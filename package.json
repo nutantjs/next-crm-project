@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.10.5",
     "@fullcalendar/daygrid": "^5.11.3",
     "@fullcalendar/react": "^5.11.3",
+    "@mui/icons-material": "^5.10.16",
     "@mui/material": "^5.10.16",
     "@types/node": "18.11.10",
     "@types/react": "18.0.26",
