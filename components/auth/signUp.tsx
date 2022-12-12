@@ -11,9 +11,13 @@ import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import CloseIcon from '@mui/icons-material/Close';
 import { useAuth } from '../../context/AuthContext';
+import { Router, useRouter } from 'next/dist/client/router';
+
 
 const signUp=()=> {
   const {user, signup} = useAuth()
+  const router = useRouter()
+
   console.log(user)
   const [data, setData]=useState({
     email:'',
@@ -28,6 +32,7 @@ const signUp=()=> {
     }
     
   }
+ 
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
