@@ -1,20 +1,33 @@
 import * as React from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
-import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
+import CloseIcon from '@mui/icons-material/Close';
+import { useAuth } from '../../context/AuthContext';
 
-
-
-export default function FormDialog() {
+const signUp=()=> {
+  const {user, signup} = useAuth()
+  console.log(user)
+  const [data, setData]=useState({
+    email:'',
+    password:'',
+  })
+  const handleSignUp = async (e:any) => {
+    e.preventDefault();
+    try{
+      await signup(data.email, data.password)
+    }catch(err){
+      console.log(err);
+    }
+    
+  }
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -24,7 +37,6 @@ export default function FormDialog() {
   const handleClose = () => {
     setOpen(false);
   };
-
   return (
     <div>
       <Button style={{ textTransform: 'none', padding: '0px' }} variant='text' onClick={handleClickOpen}>
@@ -32,66 +44,55 @@ export default function FormDialog() {
       </Button>
       <Dialog open={open} onClose={handleClose}>
         <Box
+       
           sx={{
             marginTop: 4,
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
           }}>
-          <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
-            <LockOutlinedIcon />
-          </Avatar>
+                <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+                <LockOutlinedIcon />
+            </Avatar> 
           <DialogTitle>Sign Up</DialogTitle>
           <DialogContent>
             <DialogContentText>
               To subscribe to this website, please enter your email address here. We
               will send updates occasionally.
             </DialogContentText>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="name"
-              label="Name"
-              type="name"
-              id="name"
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="surname"
-              label="Surname"
-              type="surname"
-              id="surname"
-            />
-            <TextField
+           <Box component='form' noValidate  onSubmit={handleSignUp}>
+           <TextField
+            onChange={(e:any)=>
+              setData({
+                ...data,
+                email:e.target.value,
+              })
+            }
+            value={data.email}
               margin="normal"
               required
               fullWidth
               name="email"
-              label="Email"
+              label="email"
               type="email"
               id="email"
             />
             <TextField
+            onChange={(e:any)=>
+            setData({
+              ...data,
+              password:e.target.value,
+            })}
+            value={data.password}
               margin="normal"
               required
               fullWidth
               name="password"
-              label="Password"
+              label="password"
               type="password"
               id="password"
             />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password Again"
-              type="password"
-              id="password"
-            />
+           
             <Button
               type="submit"
               fullWidth
@@ -100,7 +101,15 @@ export default function FormDialog() {
             >
               Sign Up
             </Button>
-            <Box
+           </Box>
+            <div style={{
+              justifyContent: 'center',
+              display: 'flex'
+            }}>
+            <CloseIcon onClick={handleClose}/>
+            close
+            </div>
+         <Box
               sx={{
                 display: 'flex',
                 flexDirection: 'row',
@@ -115,3 +124,4 @@ export default function FormDialog() {
     </div>
   );
 }
+export default signUp

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import * as React from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
@@ -12,23 +13,39 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import SignUp from '../components/auth/signUp'
+import { useAuth } from '../context/AuthContext';
+import { Router, useRouter } from 'next/dist/client/router';
 
 
-export default function SignIn() {
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-  };
+const Login = () =>{
+  const { user, logout, login } = useAuth()
+  console.log(user)
+  const router = useRouter()
+  const [data, setData] = useState({
+    email: '',
+    password: '',
+  })
+  const handleLogin = async (e:any) =>{
+    e.preventDefault();
+    console.log(data)
+    try{
+      await login(data.email, data.password)
+      router.push('/dashboard')
+    }catch(err){
+      console.log(err);
+      window.alert("wrong password")
+    }
+  }
 
   return (
    
       <Container component="main" maxWidth="xs">
         <CssBaseline />
-        <Box
+        {user ? (
+          <Link href='/dashboard'></Link>
+        ):(
+          <>
+          <Box
           sx={{
             marginTop: 8,
             display: 'flex',
@@ -40,10 +57,16 @@ export default function SignIn() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography component="h1" variant="h5">
-            Sign in
+            Login
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form"  noValidate sx={{ mt: 1 }} onSubmit={handleLogin}>
             <TextField
+            onChange={(e: any) =>
+              setData({
+                ...data,
+                email: e.target.value,
+              })
+            }
               margin="normal"
               required
               fullWidth
@@ -54,6 +77,12 @@ export default function SignIn() {
               autoFocus
             />
             <TextField
+              onChange={(e: any) =>
+                setData({
+                  ...data,
+                  password: e.target.value,
+                })
+              }
               margin="normal"
               required
               fullWidth
@@ -73,7 +102,7 @@ export default function SignIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign In
+              Login
             </Button>
             <Grid container>
               <Grid item xs direction="row">
@@ -84,12 +113,18 @@ export default function SignIn() {
               </Grid>
               <Grid item>
                 <Link variant="body2">
-                <SignUp></SignUp>
+                
                 </Link>
               </Grid>
             </Grid>
           </Box>
         </Box>
+        <SignUp></SignUp>
+          </>
+        )}
+        
       </Container>
   );
 }
+
+export default  Login

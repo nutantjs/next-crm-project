@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -18,8 +20,12 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
+import { useAuth } from '../context/AuthContext';
+import { Router, useRouter } from 'next/dist/client/router';
+
 
 const drawerWidth = 240;
+
 
 const openedMixin = (theme: Theme): CSSObject => ({
   width: drawerWidth,
@@ -91,6 +97,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function MiniDrawer() {
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -101,6 +108,10 @@ export default function MiniDrawer() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
+  const { user, logout, login } = useAuth()
+  const router = useRouter()
+
+
 
   return (
     <Box sx={{ display: 'flex' }}>
@@ -122,7 +133,22 @@ export default function MiniDrawer() {
           <Typography variant="h6" noWrap component="div">
             Mini variant drawer
           </Typography>
+          <Button
+          style={{
+            justifyContent:"end",
+            display:"flex",
+            alignItems:"end"
+          }}
+          color="error"
+            onClick={()=>{
+              logout()
+              router.push('/login')
+            }}
+            >
+              LOGOUT
+            </Button>
         </Toolbar>
+        
       </AppBar>
       <Drawer variant="permanent" open={open}>
         <DrawerHeader>
