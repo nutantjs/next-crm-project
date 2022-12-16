@@ -19,6 +19,7 @@ import { Router, useRouter } from 'next/dist/client/router';
 
 const Login = () => {
   const { user, login } = useAuth()
+  const [userData, setUserData]=useState<any>(null)
   console.log(user)
   const router = useRouter()
   const [data, setData] = useState({
@@ -34,6 +35,7 @@ const Login = () => {
     } catch (err) {
       console.log(err);
       window.alert("wrong password")
+     
     }
   }
   React.useEffect(() => {
@@ -41,6 +43,19 @@ const Login = () => {
     return () => {
     }
   }, [user])
+    
+  React.useEffect(() => {
+    fetch("http://localhost:8000/posts").then((res:any)=>{
+      return res.json();
+    }).then((resp:any)=>{
+      setUserData(resp);
+      console.log(resp)
+    }).catch((err:any)=>{
+      console.log(err.message)
+    })
+  
+    
+  }, [])
 
 
   return (
@@ -52,7 +67,8 @@ const Login = () => {
           flexDirection: 'column',
           alignItems: 'center',
         }}
-      >
+      > 
+      <p>{data.email}</p>
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>
@@ -60,6 +76,7 @@ const Login = () => {
           Login
         </Typography>
         <Box component="form" noValidate sx={{ mt: 1 }} onSubmit={handleLogin}>
+        
           <TextField
             onChange={(e: any) =>
               setData({
@@ -76,6 +93,7 @@ const Login = () => {
             autoComplete="email"
             autoFocus
           />
+
           <TextField
             onChange={(e: any) =>
               setData({
@@ -104,6 +122,7 @@ const Login = () => {
           >
             Login
           </Button>
+         
           <Grid container>
             <Grid item xs direction="row">
               <Link href="#" variant="body2">

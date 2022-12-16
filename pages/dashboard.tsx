@@ -2,7 +2,7 @@ import * as React from 'react';
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-
+import TextField from '@mui/material/TextField';
 import MuiDrawer from '@mui/material/Drawer';
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
@@ -109,6 +109,7 @@ export default function MiniDrawer() {
     setOpen(false);
   };
   const { user, logout, login } = useAuth()
+  console.log(user)
   const router = useRouter()
 
 
@@ -146,6 +147,7 @@ export default function MiniDrawer() {
             }}
             >
               LOGOUT
+              {user.email}
             </Button>
         </Toolbar>
         
@@ -236,6 +238,10 @@ export default function MiniDrawer() {
           eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
           posuere sollicitudin aliquam ultrices sagittis orci a.
         </Typography>
+        <TextField
+        disabled
+        label={user.email}
+        />
       </Box>
     </Box>
   );

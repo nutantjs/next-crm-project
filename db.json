@@ -1,0 +1,10 @@
+{
+    "posts": [
+      { "id": 1, "mail": "123@gmail.com", "password": "123456", "name":"muhammed", "surname":"sari"},
+      { "id": 1, "mail": "456@gmail.com", "password": "789101", "name":"mehmet", "surname":"kirmizi"},
+      { "id": 1, "mail": "789@gmail.com", "password": "112131", "name":"mustafa", "surname":"mavi"},
+      { "id": 1, "mail": "asd@gmail.com", "password": "415161", "name":"mahmut", "surname":"yesil"},
+      { "id": 1, "mail": "fgh@gmail.com", "password": "718192", "name":"murat", "surname":"mor"}
+     
+    ]
+  }
