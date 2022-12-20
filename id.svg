@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="60px" height="56px" viewBox="0 0 60 56" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: sketchtool 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>CC80CBB5-CE6E-47FA-8D8E-6B1CA30F8D3B</title>
+    <desc>Created with sketchtool.</desc>
+    <defs></defs>
+    <g id="DASHBOARD-V1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="PROFIL-PROF---MOBILE-1" transform="translate(-72.000000, -486.000000)">
+            <g id="Group-3-Copy" transform="translate(20.000000, 450.000000)">
+                <g id="id" transform="translate(52.000000, 36.000000)">
+                    <polygon id="Shape" fill="#F7F7F7" fill-rule="nonzero" points="34 6 34 12 26 12 26 6 0 6 0 56 60 56 60 6"></polygon>
+                    <path d="M28,42.9 C24,42 24,40.6 24,39.6 L24,38.1 C25.8903721,36.3076619 26.9423638,33.8046474 26.9,31.2 L26.9,26.7 C26.8736725,24.8964652 26.1318715,23.1772801 24.8378276,21.9207447 C23.5437837,20.6642093 21.803529,19.9732825 20,20 C18.1793507,19.9462427 16.4132429,20.6251483 15.0974005,21.8845975 C13.781558,23.1440467 13.0259925,24.8787427 13,26.7 L13,31.2 C12.9834418,33.8198961 14.0727255,36.3252486 16,38.1 L16,39.6 C16,40.5 16,42 11.8,42.9 C7.6,43.8 8,48 8,48 L32,48 C32.0572423,45.5623839 30.3810458,43.4252333 28,42.9 Z" id="Shape" fill="#A6DBFF" fill-rule="nonzero"></path>
+                    <polygon id="Path" fill="#000064" opacity="0.15" points="33 10.8 33 14 24 14 24 6 28 6 28 10.8"></polygon>
+                    <polygon id="Shape" fill="#FD5F6F" fill-rule="nonzero" points="26 0 34 0 34 12 26 12"></polygon>
+                    <polygon id="Shape" fill="#000064" fill-rule="nonzero" opacity="0.15" points="6 6 6 53 60 53 60 56 0 56 0 6"></polygon>
+                    <path d="M36,20 L52,20 L36,20 Z M36,28 L46,28 L36,28 Z M36,36 L50,36 L36,36 Z" id="Shape" stroke="#2E4369" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
