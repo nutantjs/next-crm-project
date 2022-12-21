@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/material';
 import { ClassNames } from '@emotion/react';
 import Profile from '../components/user/profile'
+import style from '../styles/user.module.css'
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -20,6 +21,7 @@ function TabPanel(props: TabPanelProps) {
 
   return (
     <div
+    className={style.wrap}
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
@@ -59,7 +61,7 @@ export default function BasicTabs() {
           <Tab label="Item Three" {...a11yProps(2)} />
         </Tabs>
       </Box>
-      <TabPanel style={{padding: '90px'}} value={value} index={0}>
+      <TabPanel style={{padding: '50px'}} value={value} index={0}>
         <Profile></Profile>
       </TabPanel>
       <TabPanel style={{padding:'0px'}} value={value} index={1}>

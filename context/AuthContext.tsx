@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import {auth} from '../firebase'
 
 const AuthContext = createContext<any>({})
-export const useAuth = () => React.useContext(AuthContext)
+export const useAuth = () => React.useContext<any>(AuthContext)
 
 export const AuthContextProvider = ({
     children,

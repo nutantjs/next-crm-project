@@ -1,0 +1,39 @@
+.img{
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    margin: 5%;   
+}
+.button{
+     height: 40px;
+     width: 150px;
+     border-radius: 10px;
+        
+}
+.buttonWrapper{
+    
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-top: 10px;
+}
+.checkBox{
+    justify-content: space-around;
+    display: block;
+}
+.formGroup{
+    padding: 5px;
+}
+.uploadImg{
+   height: 200px;
+    box-sizing: border-box;
+    background-image: url('https://c.superprof.com/i/av/300.jpg');
+    border: solid 1px rgb(198, 163, 163);
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    display:flex;
+    background-size: cover;
+
+
+}
