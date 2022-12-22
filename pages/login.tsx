@@ -19,7 +19,6 @@ import { Router, useRouter } from 'next/dist/client/router';
 
 const Login = () => {
   const { user, login } = useAuth()
-  const [userData, setUserData]=useState<any>(null)
   console.log(user)
   const router = useRouter()
   const [data, setData] = useState({
@@ -43,9 +42,10 @@ const Login = () => {
     return () => {
     }
   }, [user])
-    
+  const [userData, setUserData]=useState<any>(null)
+
   React.useEffect(() => {
-    fetch("http://localhost:8000/posts").then((res:any)=>{
+    fetch("http://localhost:4000/posts").then((res:any)=>{
       return res.json();
     }).then((resp:any)=>{
       setUserData(resp);
@@ -69,6 +69,16 @@ const Login = () => {
         }}
       > 
       <p>{data.email}</p>
+      {
+        userData.map(item => (
+          <tr key={item.id}>
+            <td>{item.mail}</td>
+            <td>{item.name}</td>
+            <td>{item.surname}</td>
+
+          </tr>
+        ))
+      }
         <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
           <LockOutlinedIcon />
         </Avatar>

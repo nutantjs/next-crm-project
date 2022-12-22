@@ -398,7 +398,12 @@ export default function Dashboard() {
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                  <User></User>
+      <DrawerHeader />
+        
+        <TextField
+          disabled
+          label={user.email}
+        />
       </Box>
     </Box>
   );
