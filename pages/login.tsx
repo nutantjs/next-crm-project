@@ -31,6 +31,8 @@ const Login = () => {
     try {
       await login(data.email, data.password)
       router.push('/dashboard')
+      //aşağıda yaptığım fonksiyonda json serverdan alınacak data burada işlenecek yine aşığıda statete tutulan data reactcontexe koyulacak, fetch yerine react query kullnılılack
+
     } catch (err) {
       console.log(err);
       window.alert("wrong password")
@@ -43,6 +45,8 @@ const Login = () => {
     }
   }, [user])
   const [userData, setUserData]=useState<any>(null)
+
+
 
   React.useEffect(() => {
     fetch("http://localhost:4000/posts").then((res:any)=>{
@@ -69,12 +73,14 @@ const Login = () => {
         }}
       > 
       <p>{data.email}</p>
-      {
+      { userData &&
         userData.map(item => (
           <tr key={item.id}>
             <td>{item.mail}</td>
             <td>{item.name}</td>
             <td>{item.surname}</td>
+            <td>{item.age}</td>
+            <td>{item.telno}</td>
 
           </tr>
         ))

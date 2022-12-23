@@ -1,10 +1,73 @@
 {
-    "posts": [
-      { "id": 1, "mail": "123@gmail.com", "password": "123456", "name":"muhammed", "surname":"sari"},
-      { "id": 1, "mail": "456@gmail.com", "password": "789101", "name":"mehmet", "surname":"kirmizi"},
-      { "id": 1, "mail": "789@gmail.com", "password": "112131", "name":"mustafa", "surname":"mavi"},
-      { "id": 1, "mail": "asd@gmail.com", "password": "415161", "name":"mahmut", "surname":"yesil"},
-      { "id": 1, "mail": "fgh@gmail.com", "password": "718192", "name":"murat", "surname":"mor"}
-     
-    ]
-  }
+  "posts": [
+    {
+      "id": 1,
+      "mail": "123@gmail.com",
+      "name": "muhammed",
+      "surname": "sari",
+      "age": "1",
+      "telno": "1234567890"
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "name": "dfhgjdfhg",
+      "surname": "dfhgjdfhg",
+      "mail": "",
+      "age": "78",
+      "telno": "46456456456",
+      "id": 5
+    },
+    {
+      "id": 6
+    },
+    {
+      "id": 7
+    },
+    {
+      "id": 8
+    },
+    {
+      "id": 9
+    },
+    {
+      "name": "dfjghjdfg",
+      "surname": "gfjhjfgkjhkgfh",
+      "mail": "",
+      "age": "23",
+      "telno": "56756658568",
+      "id": 10
+    },
+    {
+      "name": "dfhgjdfhg",
+      "surname": "shdghsdsd",
+      "mail": "",
+      "age": "345",
+      "telno": "568568678",
+      "id": 11
+    },
+    {
+      "name": "dfhgjdfhg",
+      "surname": "dfhgjdfhg",
+      "mail": "myldz5689@gmail.com",
+      "age": "dfhgjdfhg",
+      "telno": "dfhgjdfhg",
+      "id": 12
+    },
+    {
+      "name": "kadir",
+      "surname": "yıldız",
+      "mail": "md.yldz@outlook.com",
+      "age": "erkek",
+      "telno": "erkek",
+      "id": 13
+    }
+  ]
+}

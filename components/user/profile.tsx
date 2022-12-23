@@ -18,6 +18,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useAuth } from '../../context/AuthContext';
+import { E } from 'chart.js/dist/chunks/helpers.core';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -37,8 +38,29 @@ function profile() {
 
     }
     const { user } = useAuth()
-    console.log(user)
-    
+
+    const [name, setName] = useState("")
+    const [mail, setMail] = useState(user.email)
+    const [surname, setSurname] = useState("")
+    const [age, setAge] = useState("")
+    const [telno, setTelno] = useState("")
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        console.log(name, surname, mail, age, telno)
+        const setUserData = { name, surname, mail, age, telno }
+        
+        fetch("http://localhost:4000/posts",{
+            method: "POST",
+            headers:{"content-type":"application/json"},
+            body: JSON.stringify(setUserData)
+        }).then((res) => {
+            alert("saved succesfull")
+        }).catch((err) => {
+            console.log(err)
+        })
+    }
+
     return (
         <Box sx={{ flexGrow: 1 }} className='img'>
             <Grid container spacing={2}>
@@ -56,6 +78,7 @@ function profile() {
                             }
                         }}>
                         <CardContent
+
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'column'
@@ -69,50 +92,60 @@ function profile() {
                                 color="text.secondary">
                                 Genel bilgiler 🙂
                             </Typography>
-                            <TextField id="outlined-basic"
-                                disabled
-                                label={user.email}
-                                margin="normal"
-                                variant="outlined" />
-                                 <TextField
-                                id="outlined-basic"
-                                margin="normal"
-                                label="İsim"
-                                variant="outlined" />
-                            <TextField
-                                id="outlined-basic"
-                                margin="normal"
-                                label="Soyadınız"
-                                variant="outlined" />
-                            <TextField
-                                id="outlined-basic"
-                                margin="normal"
-                                label="mail"
-                                variant="outlined" />
-                            <TextField
-                                id="outlined-basic"
-                                margin="normal"
-                                label="Yaş"
-                                variant="outlined" />
-                            <TextField
-                                id="outlined-basic"
-                                margin="normal"
-                                label="Telefon"
-                                variant="outlined" />
-                            <div className={style.buttonWrapper}>
-                                <Button
-                                    className={style.button}
-                                    variant="contained"
+                            <form onSubmit={handleSubmit}>
+                                <TextField id="outlined-basic"
+                                    value={mail}
+                                    onChange={e => setMail(e.target.value)}
+                                    disabled
+                                    label={user.email}
+                                    margin="normal"
+                                    variant="outlined" />
+                                <TextField
+                                    id="outlined-basic"
+                                    value={name}
+                                    onChange={e => setName(e.target.value)}
+                                    margin="normal"
+                                    label="İsim"
+                                    variant="outlined" />
+                                <TextField
+                                    id="outlined-basic"
+                                    value={surname}
+                                    onChange={e => setSurname(e.target.value)}
+                                    margin="normal"
+                                    label="Soyadınız"
+                                    variant="outlined" />
+                                <TextField
+                                    id="outlined-basic"
+                                    value={age}
+                                    onChange={e => setAge(e.target.value)}
+                                    margin="normal"
+                                    label="name"
+                                    variant="outlined" />
+                                <TextField
+                                    id="outlined-basic"
+                                    value={telno}
+                                    onChange={e => setTelno(e.target.value)}
+                                    margin="normal"
+                                    label="Telefon"
+                                    variant="outlined" />
+                                <div className={style.buttonWrapper}>
+                                    <Button
+                                        className={style.button}
+                                        variant="contained"
+                                        type='submit'
 
-                                >onayla</Button>
-                            </div>
+                                    >onayla</Button>
+                                </div>
+                            </form>
+                            {}
 
                         </CardContent>
+
                     </Card>
                     <Card
                         sx={{
                             display: 'flex',
-                           
+
                             margin: '30px', flexDirection: 'column', flexGrow: 1,
                             justifyContent: 'flex-end',
                             ':hover': {
@@ -176,33 +209,33 @@ function profile() {
                                 color="text.secondary">
                                 Bildirimler <img src='https://c.superprof.com/static/img/contacter.5fc0bd11.svg' width={15} />
                             </Typography>
-                          
-                           <Typography
-                            textAlign={'start'}
-                            margin="normal"
-                            fontWeight={'bold'}
-                            color="black"
-                            fontSize={'small'}                            >
+
+                            <Typography
+                                textAlign={'start'}
+                                margin="normal"
+                                fontWeight={'bold'}
+                                color="black"
+                                fontSize={'small'}                            >
                                 SMS
                             </Typography>
                             <FormGroup >
                                 <FormControlLabel className={style.formGroup} control={<Switch defaultChecked />} label="Ders talepleri" />
                             </FormGroup>
                             <Typography
-                            textAlign={'start'}
-                            margin="normal"
-                            fontWeight={'bold'}
-                            color="black"
-                            fontSize={'small'}                            >
+                                textAlign={'start'}
+                                margin="normal"
+                                fontWeight={'bold'}
+                                color="black"
+                                fontSize={'small'}                            >
                                 E-MAIL
 
                             </Typography>
                             <FormGroup >
-                                <FormControlLabel className={style.formGroup}  control={<Switch defaultChecked />} label="Hesap hareketleri" />
+                                <FormControlLabel className={style.formGroup} control={<Switch defaultChecked />} label="Hesap hareketleri" />
                                 <FormControlLabel className={style.formGroup} control={<Switch defaultChecked />} label="Ders talepleri" />
                                 <FormControlLabel className={style.formGroup} control={<Switch defaultChecked />} label="İlanlarımı ilgilendiren teklifler" />
                             </FormGroup>
-                       
+
                         </CardContent>
                     </Card>
                 </Grid>
@@ -248,7 +281,7 @@ function profile() {
                     </Card>
                 </Grid>
                 <Grid xs={3}>
-                <Card
+                    <Card
                         sx={{
                             display: 'flex',
                             margin: '30px', flexDirection: 'column', flexGrow: 1,
@@ -266,11 +299,11 @@ function profile() {
                                 padding: '20px',
 
                             }}>
-                                <div className={style.uploadImg}>
-                               
+                            <div className={style.uploadImg}>
 
-                                </div>
-                                <Typography
+
+                            </div>
+                            <Typography
                                 marginTop='10px'
                                 className='img'
                                 alignContent={'center'}
@@ -281,7 +314,7 @@ function profile() {
                                 color="text.secondary">
                                 Yeni fotoğraf yükle ⇪
                             </Typography>
-                           
+
                             <Button
                                 component="label"
                                 sx={{ borderRadius: '10px', margin: '15px', height: '40px' }}
