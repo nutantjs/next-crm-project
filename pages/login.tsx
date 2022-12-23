@@ -49,10 +49,10 @@ const Login = () => {
 
 
   React.useEffect(() => {
-    fetch("http://localhost:4000/posts").then((res:any)=>{
+    fetch(`http://localhost:4000/posts`).then((res:any)=>{
       return res.json();
     }).then((resp:any)=>{
-      setUserData(resp);
+      setUserData(resp); 
       console.log(resp)
     }).catch((err:any)=>{
       console.log(err.message)

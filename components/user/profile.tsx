@@ -10,7 +10,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
+import FormControl, { formControlClasses } from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import style from './profile.module.css';
 import FormGroup from '@mui/material/FormGroup';
@@ -19,6 +19,7 @@ import Switch from '@mui/material/Switch';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useAuth } from '../../context/AuthContext';
 import { E } from 'chart.js/dist/chunks/helpers.core';
+import { Drawer } from '@mui/material';
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -44,16 +45,33 @@ function profile() {
     const [surname, setSurname] = useState("")
     const [age, setAge] = useState("")
     const [telno, setTelno] = useState("")
+    const [userData, setUserData]=useState<any>(null)
+
+    
+  React.useEffect(() => {
+    fetch(`http://localhost:4000/posts/?mail=${user.email}`).then((res:any)=>{
+      return res.json();
+    }).then((resp:any)=>{
+      setUserData(resp);
+      console.log(resp)
+    }).catch((err:any)=>{
+      console.log(err.message)
+    })
+   
+    
+  }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(name, surname, mail, age, telno)
-        const setUserData = { name, surname, mail, age, telno }
+        const data = { name, surname, mail, age, telno }
+
+
         
         fetch("http://localhost:4000/posts",{
             method: "POST",
             headers:{"content-type":"application/json"},
-            body: JSON.stringify(setUserData)
+            body: JSON.stringify(data)
         }).then((res) => {
             alert("saved succesfull")
         }).catch((err) => {
@@ -63,11 +81,24 @@ function profile() {
 
     return (
         <Box sx={{ flexGrow: 1 }} className='img'>
+             { userData &&
+        userData.map(item => (
+          <tr key={item.id}>
+            <td>{item.mail}</td>
+            <td>{item.name}</td>
+            <td>{item.surname}</td>
+            <td>{item.age}</td>
+            <td>{item.telno}</td>
+
+          </tr>
+        ))
+      }
             <Grid container spacing={2}>
                 <Grid xs={1}>
                 </Grid>
                 <Grid xs={3}>
                     <Card
+                   
 
                         sx={{
                             margin: '30px',
@@ -77,8 +108,9 @@ function profile() {
                                 boxShadow: 10,
                             }
                         }}>
+                            <form  onSubmit={handleSubmit}>
                         <CardContent
-
+                                
                             sx={{
                                 display: 'flex',
                                 flexDirection: 'column'
@@ -92,12 +124,16 @@ function profile() {
                                 color="text.secondary">
                                 Genel bilgiler 🙂
                             </Typography>
-                            <form onSubmit={handleSubmit}>
-                                <TextField id="outlined-basic"
+                               {
+                                
+                                userData && userData.map(item =>(
+                                    
+                                    <>
+                                     <TextField id="outlined-basic"
                                     value={mail}
                                     onChange={e => setMail(e.target.value)}
                                     disabled
-                                    label={user.email}
+                                    label={item.email}
                                     margin="normal"
                                     variant="outlined" />
                                 <TextField
@@ -105,29 +141,33 @@ function profile() {
                                     value={name}
                                     onChange={e => setName(e.target.value)}
                                     margin="normal"
-                                    label="İsim"
+                                    label={item.name}
                                     variant="outlined" />
                                 <TextField
                                     id="outlined-basic"
                                     value={surname}
                                     onChange={e => setSurname(e.target.value)}
                                     margin="normal"
-                                    label="Soyadınız"
+                                    label={item.surname}
                                     variant="outlined" />
                                 <TextField
                                     id="outlined-basic"
                                     value={age}
                                     onChange={e => setAge(e.target.value)}
                                     margin="normal"
-                                    label="name"
+                                    label={item.age}
                                     variant="outlined" />
                                 <TextField
                                     id="outlined-basic"
                                     value={telno}
                                     onChange={e => setTelno(e.target.value)}
                                     margin="normal"
-                                    label="Telefon"
+                                    label={item.telno}
                                     variant="outlined" />
+                                
+                                    </>
+                                ))
+                               }
                                 <div className={style.buttonWrapper}>
                                     <Button
                                         className={style.button}
@@ -136,11 +176,10 @@ function profile() {
 
                                     >onayla</Button>
                                 </div>
-                            </form>
                             {}
 
                         </CardContent>
-
+                        </form>
                     </Card>
                     <Card
                         sx={{

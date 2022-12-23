@@ -16,6 +16,7 @@
     align-items: center;
     display: flex;
     margin-top: 10px;
+    
 }
 .checkBox{
     justify-content: space-around;
@@ -36,4 +37,10 @@
     background-size: cover;
 
 
+}
+.form{
+    display: block;
+    flex-direction: column;
+    justify-content: flex-end;
+    flex-grow: 1;
 }

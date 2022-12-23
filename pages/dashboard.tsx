@@ -1,4 +1,6 @@
 import * as React from 'react';
+import { useState } from 'react';
+
 import { styled, useTheme, Theme, CSSObject } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -148,6 +150,20 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 );
 
 export default function Dashboard() {
+  const [userData, setUserData]=useState<any>(null)
+
+  React.useEffect(() => {
+    fetch(`http://localhost:4000/posts/?mail=${user.email}`).then((res:any)=>{
+      return res.json();
+    }).then((resp:any)=>{
+      setUserData(resp);
+      console.log(resp)
+    }).catch((err:any)=>{
+      console.log(err.message)
+    })
+  
+    
+  }, [])
 
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
@@ -404,6 +420,18 @@ export default function Dashboard() {
           disabled
           label={user.email}
         />
+        { userData &&
+        userData.map(item => (
+          <tr key={item.id}>
+            <td>{item.mail}</td>
+            <td>{item.name}</td>
+            <td>{item.surname}</td>
+            <td>{item.age}</td>
+            <td>{item.telno}</td>
+
+          </tr>
+        ))
+      }
       </Box>
     </Box>
   );
