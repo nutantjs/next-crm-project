@@ -5,14 +5,17 @@ import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import { makeStyles } from '@mui/material';
 import { ClassNames } from '@emotion/react';
-import Profile from '../components/user/profile'
-import style from '../styles/user.module.css'
+import Profile from '../components/user/profile';
+import style from '../styles/user.module.css';
+import Header from '../components/dashboard/header';
+import Navbar from '../components/dashboard/navbar';
+import Grid from '@mui/material/Grid';
+
 
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
-
   style: any;
 }
 
@@ -21,7 +24,7 @@ function TabPanel(props: TabPanelProps) {
 
   return (
     <div
-    className={style.wrap}
+      className={style.wrap}
       role="tabpanel"
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
@@ -50,26 +53,43 @@ export default function BasicTabs() {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
- 
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-        </Tabs>
+    <>
+      <Box sx={{ width: '100%' }}>
+        <Box sx={{ borderBottom: 1, borderColor: 'divider', }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+            sx={{
+              backgroundColor: 'black',
+              color: 'wheat',
+              justifyContent: 'center',
+              display: 'block',
+            }}
+          >
+            <Tab
+              sx={{
+                color: 'white',
+                fontStyle: 'white',
+                textTransform: 'lowercase',
+              }}
+              label="Profile" {...a11yProps(0)} />
+            <Tab label="Item Two" {...a11yProps(1)} />
+            <Tab label="Item Three" {...a11yProps(2)} />
+          </Tabs>
+        </Box>
+        <TabPanel style={{ padding: '50px' }} value={value} index={0}>
+          <Profile></Profile>
+        </TabPanel>
+        <TabPanel style={{ padding: '0px' }} value={value} index={1}>
+          Item Two
+        </TabPanel>
+        <TabPanel style={{ padding: '20px' }} value={value} index={2}>
+          Item Three
+        </TabPanel>
       </Box>
-      <TabPanel style={{padding: '50px'}} value={value} index={0}>
-        <Profile></Profile>
-      </TabPanel>
-      <TabPanel style={{padding:'0px'}} value={value} index={1}>
-        Item Two
-      </TabPanel>
-      <TabPanel style={{padding:'20px'}} value={value} index={2}>
-        Item Three
-      </TabPanel>
-    </Box>
+    </>
   );
 }

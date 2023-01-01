@@ -14,7 +14,7 @@
 .buttonWrapper{
     
     display: flex;
-    
+    justify-content: center;
     
 }
 .checkBox{

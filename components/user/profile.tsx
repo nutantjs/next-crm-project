@@ -55,10 +55,12 @@ function profile() {
 
     React.useEffect(() => {
         fetch(`http://localhost:4000/posts/?mail=${user.email}`).then((res: any) => {
+            console.log(res.data.name);
             return res.json();
+            
         }).then((resp: any) => {
             setUserData(resp);
-            console.log(resp)
+            
         }).catch((err: any) => {
             console.log(err.message)
         })
@@ -68,8 +70,9 @@ function profile() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(name, surname, mail, age, telno)
         const data = { name, surname, mail, age, telno }
+        console.log(name, surname, mail, age, telno)
+
 
 
 
@@ -101,6 +104,8 @@ function profile() {
     // }, []);
 
     // const [userData, setUserData]= useState<any>([])
+    console.log(name, surname, mail, age, telno)
+
 
     return (
         <Box sx={{ flexGrow: 1 }} className='img'>
@@ -148,7 +153,7 @@ function profile() {
                                     color="text.secondary">
                                     Genel bilgiler 🙂
                                 </Typography>
-                                {/* {
+                                 {/* {
                                 
                                 userData && userData.map(item =>(
                                      */}
@@ -165,23 +170,27 @@ function profile() {
                                         id="outlined-basic"
                                         onChange={e => setName(e.target.value)}
                                         margin="normal"
+                                        // defaultValue={item.name}
                                         label={"name"}
                                         variant="outlined" />
                                     <TextField
                                         id="outlined-basic"
                                         onChange={e => setSurname(e.target.value)}
+                                        // defaultValue={item.surname}
                                         margin="normal"
                                         label={"surname"}
                                         variant="outlined" />
                                     <TextField
                                         id="outlined-basic"
                                         onChange={e => setAge(e.target.value)}
+                                        // defaultValue={item.age}
                                         margin="normal"
                                         label={"age"}
                                         variant="outlined" />
                                     <TextField
                                         id="outlined-basic"
                                         onChange={e => setTelno(e.target.value)}
+                                        // defaultValue={item.telno}
                                         margin="normal"
                                         label={"telno"}
                                         variant="outlined" />
@@ -189,8 +198,8 @@ function profile() {
                                 </>
 
 
-                                {/* ))
-                               } */}
+                                 {/* ))
+                               }  */}
                                 <div className={style.buttonWrapper}>
                                     <Button
                                         sx={{

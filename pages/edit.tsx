@@ -139,6 +139,8 @@ React.useEffect(() => {
 
             }
 
+        }).then((res)=>{
+            alert("saved succ")
         })
     }
 

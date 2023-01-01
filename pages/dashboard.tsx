@@ -389,7 +389,7 @@ export default function Dashboard() {
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
+          {['Öğrenciler', 'Dersler', 'Sınavlar'].map((text, index) => (
             <ListItem key={text} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{

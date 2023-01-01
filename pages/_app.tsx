@@ -1,7 +1,7 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { AuthContextProvider } from '../context/AuthContext'
-import ProdectedRoute from '../components/ProdectedRoute'
+import ProdectedRoute from '../components/auth/ProdectedRoute'
 import { Router, useRouter } from 'next/dist/client/router';
 
 

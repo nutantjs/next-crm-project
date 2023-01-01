@@ -1,3 +1,16 @@
 .wrap{
     background-color: #f7f7f7;
 }
+.MuiTabs-root {
+    background-color: black;
+}
+.wrapper_content{
+    display: flex;
+    flex-direction: column;
+}
+.header{
+    display: flex;
+}
+.content{
+    position: relative;
+}

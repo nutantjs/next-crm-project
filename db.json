@@ -7,6 +7,14 @@
       "age": "23",
       "telno": "45674564568",
       "id": 1
+    },
+    {
+      "name": "muhammed",
+      "surname": "yıldız",
+      "mail": "myldz5689@gmail.com",
+      "age": "23",
+      "telno": "346346456",
+      "id": 2
     }
   ]
 }
