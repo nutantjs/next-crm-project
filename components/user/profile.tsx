@@ -20,6 +20,10 @@ import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import { useAuth } from '../../context/AuthContext';
 import { E } from 'chart.js/dist/chunks/helpers.core';
 import { Drawer } from '@mui/material';
+import axios from "axios";
+import Link from 'next/link'
+
+
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -33,6 +37,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 
 function profile() {
+
     const [active, setActive] = useState<any>(false);
     const handleClick = () => {
         setActive(!active);
@@ -45,21 +50,21 @@ function profile() {
     const [surname, setSurname] = useState("")
     const [age, setAge] = useState("")
     const [telno, setTelno] = useState("")
-    const [userData, setUserData]=useState<any>(null)
+    const [userData, setUserData] = useState<any>(null)
 
-    
-  React.useEffect(() => {
-    fetch(`http://localhost:4000/posts/?mail=${user.email}`).then((res:any)=>{
-      return res.json();
-    }).then((resp:any)=>{
-      setUserData(resp);
-      console.log(resp)
-    }).catch((err:any)=>{
-      console.log(err.message)
-    })
-   
-    
-  }, [])
+
+    React.useEffect(() => {
+        fetch(`http://localhost:4000/posts/?mail=${user.email}`).then((res: any) => {
+            return res.json();
+        }).then((resp: any) => {
+            setUserData(resp);
+            console.log(resp)
+        }).catch((err: any) => {
+            console.log(err.message)
+        })
+
+
+    }, [])
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -67,10 +72,10 @@ function profile() {
         const data = { name, surname, mail, age, telno }
 
 
-        
-        fetch("http://localhost:4000/posts",{
+
+        fetch("http://localhost:4000/posts", {
             method: "POST",
-            headers:{"content-type":"application/json"},
+            headers: { "content-type": "application/json" },
             body: JSON.stringify(data)
         }).then((res) => {
             alert("saved succesfull")
@@ -78,27 +83,46 @@ function profile() {
             console.log(err)
         })
     }
+    // const { user } = useAuth()
+
+
+    // function loadUser() {
+
+    //     axios.get(`http://localhost:4000/posts/?mail=${user.email}`).then((res) => {
+    //           setUserData(res.data.reverse())
+    //         console.log(res.data.reverse)
+    //     })
+    // }
+
+    // React.useEffect(() => {
+
+    //     loadUser();
+
+    // }, []);
+
+    // const [userData, setUserData]= useState<any>([])
 
     return (
         <Box sx={{ flexGrow: 1 }} className='img'>
-             { userData &&
-        userData.map(item => (
-          <tr key={item.id}>
-            <td>{item.mail}</td>
-            <td>{item.name}</td>
-            <td>{item.surname}</td>
-            <td>{item.age}</td>
-            <td>{item.telno}</td>
+            {user.email}
+            {userData &&
+                userData.map(item => (
+                    <tr key={item.id}>
+                        <td>{item.mail}</td>
+                        <td>{item.name}</td>
+                        <td>{item.surname}</td>
+                        <td>{item.age}</td>
+                        <td>{item.telno}</td>
 
-          </tr>
-        ))
-      }
+                    </tr>
+                ))
+            }
             <Grid container spacing={2}>
                 <Grid xs={1}>
                 </Grid>
                 <Grid xs={3}>
                     <Card
-                   
+
 
                         sx={{
                             margin: '30px',
@@ -108,77 +132,90 @@ function profile() {
                                 boxShadow: 10,
                             }
                         }}>
-                            <form  onSubmit={handleSubmit}>
-                        <CardContent
-                                
-                            sx={{
-                                display: 'flex',
-                                flexDirection: 'column'
-                            }}>
-                            <Typography
-                                alignContent={'center'}
-                                variant="subtitle2"
-                                textAlign={'center'}
-                                margin="normal"
-                                fontWeight={'bold'}
-                                color="text.secondary">
-                                Genel bilgiler 🙂
-                            </Typography>
-                               {
+                        <form onSubmit={handleSubmit}>
+                            <CardContent
+
+                                sx={{
+                                    display: 'flex',
+                                    flexDirection: 'column'
+                                }}>
+                                <Typography
+                                    alignContent={'center'}
+                                    variant="subtitle2"
+                                    textAlign={'center'}
+                                    margin="normal"
+                                    fontWeight={'bold'}
+                                    color="text.secondary">
+                                    Genel bilgiler 🙂
+                                </Typography>
+                                {/* {
                                 
                                 userData && userData.map(item =>(
-                                    
-                                    <>
-                                     <TextField id="outlined-basic"
-                                    value={mail}
-                                    onChange={e => setMail(e.target.value)}
-                                    disabled
-                                    label={item.email}
-                                    margin="normal"
-                                    variant="outlined" />
-                                <TextField
-                                    id="outlined-basic"
-                                    value={name}
-                                    onChange={e => setName(e.target.value)}
-                                    margin="normal"
-                                    label={item.name}
-                                    variant="outlined" />
-                                <TextField
-                                    id="outlined-basic"
-                                    value={surname}
-                                    onChange={e => setSurname(e.target.value)}
-                                    margin="normal"
-                                    label={item.surname}
-                                    variant="outlined" />
-                                <TextField
-                                    id="outlined-basic"
-                                    value={age}
-                                    onChange={e => setAge(e.target.value)}
-                                    margin="normal"
-                                    label={item.age}
-                                    variant="outlined" />
-                                <TextField
-                                    id="outlined-basic"
-                                    value={telno}
-                                    onChange={e => setTelno(e.target.value)}
-                                    margin="normal"
-                                    label={item.telno}
-                                    variant="outlined" />
-                                
-                                    </>
-                                ))
-                               }
+                                     */}
+
+
+
+                                <>
+                                    <TextField id="outlined-basic"
+                                        disabled
+                                        value={user.email}
+                                        margin="normal"
+                                        variant="outlined" />
+                                    <TextField
+                                        id="outlined-basic"
+                                        onChange={e => setName(e.target.value)}
+                                        margin="normal"
+                                        label={"name"}
+                                        variant="outlined" />
+                                    <TextField
+                                        id="outlined-basic"
+                                        onChange={e => setSurname(e.target.value)}
+                                        margin="normal"
+                                        label={"surname"}
+                                        variant="outlined" />
+                                    <TextField
+                                        id="outlined-basic"
+                                        onChange={e => setAge(e.target.value)}
+                                        margin="normal"
+                                        label={"age"}
+                                        variant="outlined" />
+                                    <TextField
+                                        id="outlined-basic"
+                                        onChange={e => setTelno(e.target.value)}
+                                        margin="normal"
+                                        label={"telno"}
+                                        variant="outlined" />
+
+                                </>
+
+
+                                {/* ))
+                               } */}
                                 <div className={style.buttonWrapper}>
                                     <Button
-                                        className={style.button}
+                                        sx={{
+                                            margin: "10px"
+                                        }}
                                         variant="contained"
-                                        type='submit'
+                                        type='submit'>
+                                        onayla
+                                    </Button>
 
-                                    >onayla</Button>
+                                    <Button
+                                        sx={{
+                                            margin: "10px"
+                                        }}
+                                        variant="contained">
+                                        <Link href="/edit">
+                                            edit
+                                        </Link>
+                                    </Button>
+
+
                                 </div>
-                            {}
+                                { }
 
-                        </CardContent>
+                            </CardContent>
                         </form>
                     </Card>
                     <Card

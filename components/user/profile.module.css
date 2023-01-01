@@ -8,14 +8,13 @@
      height: 40px;
      width: 150px;
      border-radius: 10px;
-        
+     margin: 10px;
+     padding-left: 10px;        
 }
 .buttonWrapper{
     
-    justify-content: center;
-    align-items: center;
     display: flex;
-    margin-top: 10px;
+    
     
 }
 .checkBox{

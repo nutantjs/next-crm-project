@@ -1,73 +1,12 @@
 {
   "posts": [
     {
-      "id": 1,
-      "mail": "123@gmail.com",
-      "name": "muhammed",
-      "surname": "sari",
-      "age": "1",
-      "telno": "1234567890"
-    },
-    {
-      "id": 2
-    },
-    {
-      "id": 3
-    },
-    {
-      "id": 4
-    },
-    {
-      "name": "dfhgjdfhg",
-      "surname": "dfhgjdfhg",
-      "mail": "",
-      "age": "78",
-      "telno": "46456456456",
-      "id": 5
-    },
-    {
-      "id": 6
-    },
-    {
-      "id": 7
-    },
-    {
-      "id": 8
-    },
-    {
-      "id": 9
-    },
-    {
-      "name": "dfjghjdfg",
-      "surname": "gfjhjfgkjhkgfh",
-      "mail": "",
-      "age": "23",
-      "telno": "56756658568",
-      "id": 10
-    },
-    {
-      "name": "dfhgjdfhg",
-      "surname": "shdghsdsd",
-      "mail": "",
-      "age": "345",
-      "telno": "568568678",
-      "id": 11
-    },
-    {
-      "name": "dfhgjdfhg",
-      "surname": "dfhgjdfhg",
-      "mail": "myldz5689@gmail.com",
-      "age": "dfhgjdfhg",
-      "telno": "dfhgjdfhg",
-      "id": 12
-    },
-    {
       "name": "kadir",
       "surname": "yıldız",
       "mail": "md.yldz@outlook.com",
-      "age": "erkek",
-      "telno": "erkek",
-      "id": 13
+      "age": "23",
+      "telno": "45674564568",
+      "id": 1
     }
   ]
 }
