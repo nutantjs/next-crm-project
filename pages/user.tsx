@@ -16,7 +16,6 @@ interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
-  style: any;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -80,13 +79,13 @@ export default function BasicTabs() {
             <Tab label="Item Three" {...a11yProps(2)} />
           </Tabs>
         </Box>
-        <TabPanel style={{ padding: '50px' }} value={value} index={0}>
+        <TabPanel  value={value} index={0}>
           <Profile></Profile>
         </TabPanel>
-        <TabPanel style={{ padding: '0px' }} value={value} index={1}>
+        <TabPanel value={value} index={1}>
           Item Two
         </TabPanel>
-        <TabPanel style={{ padding: '20px' }} value={value} index={2}>
+        <TabPanel  value={value} index={2}>
           Item Three
         </TabPanel>
       </Box>

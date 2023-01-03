@@ -1,8 +1,11 @@
-import '../styles/globals.css'
+import  '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import { AuthContextProvider } from '../context/AuthContext'
 import ProdectedRoute from '../components/auth/ProdectedRoute'
 import { Router, useRouter } from 'next/dist/client/router';
+import Dashboard from './dashboard';
+
+
 
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -11,7 +14,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return(
  
-  <AuthContextProvider>
+    <AuthContextProvider>
+<Dashboard>
     {noAuthRequired.includes(router.pathname) ? (
       <Component {...pageProps} />
     ):(
@@ -19,8 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <Component {...pageProps} />
       </ProdectedRoute>
     )}
-    
+</Dashboard>
   </AuthContextProvider>
-
   )
 }

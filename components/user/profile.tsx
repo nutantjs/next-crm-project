@@ -108,7 +108,7 @@ function profile() {
 
 
     return (
-        <Box sx={{ flexGrow: 1 }} className='img'>
+        <Box className='img'>
             {user.email}
             {userData &&
                 userData.map(item => (
@@ -122,7 +122,7 @@ function profile() {
                     </tr>
                 ))
             }
-            <Grid container spacing={2}>
+            <Grid container>
                 <Grid xs={1}>
                 </Grid>
                 <Grid xs={3}>

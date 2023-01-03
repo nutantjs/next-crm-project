@@ -14,5 +14,8 @@ a {
 * {
   box-sizing: border-box;
 }
+.main_page{
+  padding-left: 200px;
+}
 
 

@@ -11,6 +11,8 @@ import Typography from '@mui/material/Typography';
 import style from '../components/user/profile.module.css';
 import { useAuth } from '../context/AuthContext';
 import axios from "axios";
+import Header from '../components/dashboard/header';
+import Navbar from '../components/dashboard/navbar'
 
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -78,41 +80,25 @@ function profile() {
     const [userData, setUserData] = useState<any>([])
     const { user } = useAuth()
 
-//matevmatik admin projesine bakıp stateleri düzenle daha az olması gerekir
-//setstate nasıl düzgün ve yanlış kullanılır
-// react antipattern öğren 
-
-  
-        
-
-       
- 
-
-  
-
-    
-
-React.useEffect(() => {
-    axios.get(`http://localhost:4000/posts/?mail=${user.email}`).then((res) => {
-        setUserData(res.data.reverse())
-        setName(res.data[0].name)
-        setEmail(res.data[0].email)
-        setSurname(res.data[0].surname)
-        setTelno(res.data[0].telno)
-        setAge(res.data[0].age)
-    
-    
-        console.log(res.data)
-    })
- 
-}, [])
+    //matevmatik admin projesine bakıp stateleri düzenle daha az olması gerekir
+    //setstate nasıl düzgün ve yanlış kullanılır
+    // react antipattern öğren 
 
 
-  
+    React.useEffect(() => {
+        axios.get(`http://localhost:4000/posts/?mail=${user.email}`).then((res) => {
+            setUserData(res.data.reverse())
+            setName(res.data[0].name)
+            setEmail(res.data[0].email)
+            setSurname(res.data[0].surname)
+            setTelno(res.data[0].telno)
+            setAge(res.data[0].age)
 
 
+            console.log(res.data)
+        })
 
-
+    }, [])
 
     async function Update(e) {
         e.preventDefault()
@@ -133,19 +119,18 @@ React.useEffect(() => {
             headers: {
                 validateStatus: false,
                 'Access-Control-Allow-Origin': 'ttp://localhost:4000',
-
                 'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-
-
             }
 
-        }).then((res)=>{
+        }).then((res) => {
             alert("saved succ")
         })
     }
 
     return (
-        <Box sx={{ flexGrow: 1 }} className='img'>
+        <>
+     
+        <Box className='img'>
             {/* { userData &&
         userData.map(item => (
           <tr key={item.id}>
@@ -186,51 +171,46 @@ React.useEffect(() => {
                                 Genel bilgiler 🙂
                             </Typography>
                             {
-                                
-                                userData && userData.map(item =>(
-                                    
+                                userData && userData.map(item => (
+                                    <>
+                                        <TextField id="outlined-basic"
+                                            defaultValue={item.mail}
+                                            disabled
+                                            margin="normal"
+                                            variant="outlined" />
+                                        <TextField
+                                            id="outlined-basic"
+                                            defaultValue={item.name}
+                                            onChange={(e) => setName(e.target.value)}
+                                            margin="normal"
+                                            label="name"
+                                            variant="outlined" />
+                                        <TextField
+                                            id="outlined-basic"
+                                            defaultValue={item.surname}
 
-                          
+                                            onChange={(e) => setSurname(e.target.value)}
+                                            margin="normal"
+                                            label="surname"
+                                            variant="outlined" />
+                                        <TextField
+                                            id="outlined-basic"
+                                            defaultValue={item.age}
+                                            onChange={(e) => setAge(e.target.value)}
+                                            margin="normal"
+                                            label="age"
+                                            variant="outlined" />
+                                        <TextField
+                                            id="outlined-basic"
+                                            onChange={(e) => setTelno(e.target.value)}
+                                            margin="normal"
+                                            defaultValue={item.telno}
+                                            variant="outlined" />
+                                    </>
 
-                                <>
-                                    <TextField id="outlined-basic"
-                                        defaultValue={item.mail}
-                                        disabled
-                                        margin="normal"
-                                        variant="outlined" />
-                                    <TextField
-                                        id="outlined-basic"
-                                        defaultValue={item.name}
-                                        onChange={(e) => setName(e.target.value)}
-                                        margin="normal"
-                                        label="name"
-                                        variant="outlined" />
-                                    <TextField
-                                        id="outlined-basic"
-                                        defaultValue={item.surname}
 
-                                        onChange={(e) => setSurname(e.target.value)}
-                                        margin="normal"
-                                        label="surname"
-                                        variant="outlined" />
-                                    <TextField
-                                        id="outlined-basic"
-                                        defaultValue={item.age}
-                                        onChange={(e) => setAge(e.target.value)}
-                                        margin="normal"
-                                        label="age"
-                                        variant="outlined" />
-                                    <TextField
-                                        id="outlined-basic"
-                                        onChange={(e) => setTelno(e.target.value)}
-                                        margin="normal"
-                                        defaultValue={item.telno}
-                                        variant="outlined" />
-                                </>
-                           
-
-                            ))
-                               }
+                                ))
+                            }
                             <div className={style.buttonWrapper}>
                                 <Button
                                     className={style.button}
@@ -247,6 +227,7 @@ React.useEffect(() => {
                 </Grid>
             </Grid>
         </Box>
+        </>
     )
 }
 

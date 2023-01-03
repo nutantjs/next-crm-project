@@ -12,6 +12,8 @@ import List from '@mui/material/List';
 import CssBaseline from '@mui/material/CssBaseline';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Unstable_Grid2';
+
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -149,7 +151,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function Dashboard() {
+export default function Dashboard(props) {
   const [userData, setUserData]=useState<any>(null)
 
   React.useEffect(() => {
@@ -286,6 +288,7 @@ export default function Dashboard() {
     </Menu>
   );
   return (
+    <>
     <Box sx={{ display: 'flex', flexGrow:1 }}>
       <CssBaseline />
       <AppBar position="fixed" style={{paddingRight: '50px'}}>
@@ -412,27 +415,20 @@ export default function Dashboard() {
             </ListItem>
           ))}
         </List>
-      </Drawer>
-      <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-      <DrawerHeader />
         
-        <TextField
-          disabled
-          label={user.email}
-        />
-        { userData &&
-        userData.map(item => (
-          <tr key={item.id}>
-            <td>{item.mail}</td>
-            <td>{item.name}</td>
-            <td>{item.surname}</td>
-            <td>{item.age}</td>
-            <td>{item.telno}</td>
+      </Drawer>
+     
+                  <Grid sx={{
+                    flexGrow: 1,
+                    paddingTop: 8
+                    
+                  }}>
 
-          </tr>
-        ))
-      }
-      </Box>
+                  
+      {props.children}
+      </Grid>
     </Box>
+    
+    </>
   );
 }
