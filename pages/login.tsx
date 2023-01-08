@@ -14,10 +14,12 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import SignUp from '../components/auth/signUp'
 import { useAuth } from '../context/AuthContext';
+import PageHOC from '../components/general/pageHoc'
+
 import { Router, useRouter } from 'next/dist/client/router';
 
 
-const Login = () => {
+const Login = (props:false) => {
   const { user, login } = useAuth()
   console.log(user)
   const router = useRouter()
@@ -63,7 +65,8 @@ const Login = () => {
 
 
   return (
-    <Container component="main" maxWidth="xs">
+   <PageHOC header={false} navbar={false}>
+     <Container component="main" maxWidth="xs">
       <Box
         sx={{
           marginTop: 8,
@@ -156,6 +159,8 @@ const Login = () => {
       </Box>
       <SignUp></SignUp>
     </Container>
+
+   </PageHOC>
   );
 }
 
